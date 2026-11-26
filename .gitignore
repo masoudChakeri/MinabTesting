@@ -8,3 +8,7 @@ node_modules/
 
 # macOS
 .DS_Store
+
+# Local publish output and runtime data
+publish/
+classes.json

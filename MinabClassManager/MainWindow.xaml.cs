@@ -99,7 +99,7 @@ public partial class MainWindow : Window
         var button = (Button)sender;
         var entry = (StudentEntry)button.Tag;
         // Closing the window fires its Closed event which removes the entry
-        try { entry.Window?.Close(); }
+        try { entry.Window?.ForceClose(); }
         catch
         {
             _students.Remove(entry);
@@ -108,6 +108,19 @@ public partial class MainWindow : Window
     }
 
     // ── Helpers ──────────────────────────────────────────────────────────────
+
+    private void ViewStudentButton_Click(object sender, RoutedEventArgs e)
+    {
+        var entry = (StudentEntry)((Button)sender).Tag;
+        entry.Window?.ToggleView();
+    }
+
+    // Background student windows would otherwise keep the app alive
+    protected override void OnClosed(EventArgs e)
+    {
+        base.OnClosed(e);
+        Application.Current.Shutdown();
+    }
 
     private void UpdateStatus() =>
         statusText.Text = $"{_classes.Count} classes  ·  {_students.Count} students this session";

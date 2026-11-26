@@ -150,14 +150,21 @@
                             <DataGridTextColumn Header="Mic"
                                                Binding="{Binding MicDisplay}"
                                                Width="80"/>
-                            <DataGridTemplateColumn Header="Action" Width="100">
+                            <DataGridTemplateColumn Header="Action" Width="170">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                        <Button Content="View"
+                                                Style="{StaticResource RemoveButton}"
+                                                Tag="{Binding}"
+                                                Click="ViewStudentButton_Click"
+                                                Margin="4,2"/>
                                         <Button Content="Remove"
                                                 Style="{StaticResource RemoveButton}"
                                                 Tag="{Binding}"
                                                 Click="RemoveStudentButton_Click"
                                                 Margin="4,2"/>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
